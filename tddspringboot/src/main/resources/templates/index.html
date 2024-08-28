@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #444;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+<h1>Create a Customer</h1>
+<form action="/addCustomer" method="post">
+    <label for="name">Customer Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="number">Customer Number</label>
+    <input type="text" id="number" name="number" required>
+
+    <label for="email">Customer Email Address</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit">Submit</button>
+</form>
+
+<h2>All Customers</h2>
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Email</th>
+        <th>Created At</th>
+    </tr>
+    <tr th:each="customer, iter : ${customers}">
+        <td th:text="${iter.index + 1}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.number}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.createdAt}"></td>
+    </tr>
+</table>
+</body>
+</html>
